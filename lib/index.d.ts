@@ -105,7 +105,7 @@ export declare class DiscordUNO {
     /**
      * To play a card in your hand, call the playCard() method. This method accepts one parameter, which is the message object. This method will handle playing the card called. On success, it will remove the card from their hand and replace the top card. On fail it will return.
      */
-    playCard(message: Message): Promise<Message>;
+    playCard(message: Message, card: string): Promise<Message>;
     /**
      * To view the current state of the game, call the viewTable() method. This method has one parameter, which is the Message object. This method will handle creating and sending an image to the channel with all the current information of the game. Including rotation, whos turn it is, how many cards each user has, whos in the game, and the top card of the pile.
      */

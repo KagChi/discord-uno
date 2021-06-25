@@ -273,7 +273,7 @@ export class DiscordUNO {
     /**
      * To play a card in your hand, call the playCard() method. This method accepts one parameter, which is the message object. This method will handle playing the card called. On success, it will remove the card from their hand and replace the top card. On fail it will return.
      */
-    public async playCard(message: Message): Promise<Message> {
+    public async playCard(message: Message, card: string): Promise<Message> {
 
         const foundGame = this.storage.get(message.channel.id);
         if (!foundGame) return message.channel.send("There is no game to play a card in! Try making a new game instead.");
@@ -282,7 +282,6 @@ export class DiscordUNO {
         const settings = this.settings.get(message.channel.id);
 
         const user = settings.jumpIns ? foundGame.users.find(u => u.id === message.author.id) : foundGame.users[foundGame.currentPlayer];
-        const card = message.content.split(" ").slice(1).join(" ");
         if (!card) return message.channel.send("Please provide a valid card.");
 
         const cardObject = user.hand.find(crd => crd.name.toLowerCase() === card.toLowerCase());
